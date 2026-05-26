@@ -10,6 +10,16 @@
     <div class="container">
       <h1>⚔️ Panel de Personajes Épicos ⚔️</h1>
 
+      <form id="character-form" class="form">
+        <h2>Agregar Personaje</h2>
+        <input name="name" placeholder="Nombre" required />
+        <input name="race" placeholder="Raza" required />
+        <input name="role" placeholder="Rol" required />
+        <input name="level" type="number" placeholder="Nivel" required />
+        <input name="universe" placeholder="Universo" required />
+        <button type="submit">Agregar</button>
+      </form>
+
       <div id="loading" class="loading">Cargando personajes...</div>
 
       <div id="characters-container" class="grid"></div>

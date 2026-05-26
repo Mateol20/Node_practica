@@ -71,3 +71,53 @@ p {
 .card strong {
   color: #ff9f43;
 }
+
+.form {
+  background: #2d2d2d;
+  border: 2px solid #3d3d3d;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.form h2 {
+  width: 100%;
+  margin: 0 0 5px 0;
+  color: #ff9f43;
+  font-size: 1.2rem;
+}
+
+.form input {
+  flex: 1 1 140px;
+  padding: 10px;
+  border: 1px solid #3d3d3d;
+  border-radius: 4px;
+  background: #1a1a1a;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+}
+
+.form input::placeholder {
+  color: #666;
+}
+
+.form button {
+  flex: 0 0 auto;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 4px;
+  background: #ff9f43;
+  color: #1a1a1a;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form button:hover {
+  background: #e8891e;
+}

@@ -20,6 +20,36 @@ http
     } else if (method === "GET" && url === "/api/health") {
       res.writeHead(200, { "Content-Type": "application/json" });
       return res.end(JSON.stringify(status));
+    } else if (method === "POST" && url === "/api/characters") {
+      let body = "";
+      req.on("data", (chunk) => {
+        body += chunk.toString();
+      });
+      req.on("end", () => {
+        try {
+          const newCharacter = JSON.parse(body);
+          if (
+            newCharacter.name &&
+            newCharacter.race &&
+            newCharacter.role &&
+            newCharacter.level &&
+            newCharacter.universe
+          ) {
+            newCharacter.id = (characters.length + 1).toString();
+            characters.push(newCharacter);
+            res.writeHead(201, { "Content-Type": "application/json" });
+            return res.end(JSON.stringify(newCharacter));
+          } else {
+            res.writeHead(400, { "Content-Type": "application/json" });
+            return res.end(
+              JSON.stringify({ error: "Faltan campos obligatorios" }),
+            );
+          }
+        } catch (error) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          return res.end(JSON.stringify({ error: "JSON inválido" }));
+        }
+      });
     }
     // -------------------------------------------------------------
     // 2. MANEJADOR DINÁMICO DE ARCHIVOS ESTÁTICOS
