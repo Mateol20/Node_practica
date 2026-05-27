@@ -1,4 +1,6 @@
-const fs = require("fs");
+import fs from "fs";
+import { mkdir } from "fs/promises";
+import { join } from "path";
 
 const source = process.argv[2];
 const destination = process.argv[3];
@@ -10,8 +12,12 @@ if (!source || !destination) {
 
 const start = Date.now();
 
+const outputDir = join("output");
+await mkdir(outputDir, { recursive: true });
+const finalDestination = join(outputDir, destination);
+
 const readStream = fs.createReadStream(source);
-const writeStream = fs.createWriteStream(destination);
+const writeStream = fs.createWriteStream(finalDestination);
 
 readStream.pipe(writeStream);
 
@@ -27,5 +33,7 @@ writeStream.on("error", (err) => {
 
 writeStream.on("finish", () => {
   const elapsed = Date.now() - start;
-  console.log(`Archivo copiado de "${source}" a "${destination}" (${elapsed}ms)`);
+  console.log(
+    `Archivo copiado de "${source}" a "${destination}" (${elapsed}ms)`,
+  );
 });
